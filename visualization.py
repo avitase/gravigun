@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 *-*
-import pygame
 from random import randint
+import pygame
+from world import X, Y
 
-def starsky(disp, Y, tick):
+def starsky(disp, tick):
 	''' render astonishing star sky. '''
 	if tick % 100 == 0:
 		for _ in range(randint(0, 100 - len(starsky.stars))):
@@ -21,14 +22,14 @@ def starsky(disp, Y, tick):
 		b = 60 + z % 190
 		pygame.draw.circle(disp, (b, b, b), (x, y), 2)
 # mode doesn't matter for the bg, so initialsing it once is ok
-starsky.stars = [(randint(25, 1255), randint(70, 650), 0) for _ in range(randint(40, 60))]
+starsky.stars = [(randint(25, X-25), randint(70, 650), 0) for _ in range(randint(40, 60))]
 
 def draw_planets(disp, planets):
 	for p in planets:
 		p.draw(disp)
 
 def draw_projectiles(disp, projectiles):
-	for p in planets:
+	for p in projectiles:
 		p.draw(disp)
 
 def draw_gunsight(disp, gun):

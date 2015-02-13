@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 *-*
+import pygame
 
+X = 1280
+Y =  720
+FPS = 30
 
 class RoundThing(object):
 	def __init__(self, x, y, mas, rad, col):
