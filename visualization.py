@@ -22,3 +22,14 @@ def starsky(disp, Y, tick):
 		pygame.draw.circle(disp, (b, b, b), (x, y), 2)
 # mode doesn't matter for the bg, so initialsing it once is ok
 starsky.stars = [(randint(25, 1255), randint(70, 650), 0) for _ in range(randint(40, 60))]
+
+def draw_planets(disp, planets):
+	for p in planets:
+		p.draw(disp)
+
+def draw_projectiles(disp, projectiles):
+	for p in planets:
+		p.draw(disp)
+
+def draw_hud(disp):
+	pass
