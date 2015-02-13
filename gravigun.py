@@ -3,7 +3,8 @@
 import pygame
 from pygame.locals import K_LEFT, K_RIGHT, K_SPACE, K_ESCAPE, KEYUP, KEYDOWN, QUIT
 #from random import randint, randrange
-from world import X, Y, FPS
+from world import X, Y, FPS, Gunsight
+#import world
 import visualization
 import god
 
@@ -18,7 +19,7 @@ DISPLAY = pygame.display.set_mode((X, Y))
 
 PLANETS = god.generic_field()
 PROJECTILES = []
-GUNSIGHT = None
+GUNSIGHT = Gunsight(PLANETS[0], 2)
 WORLDINFO = None
 
 run = True
@@ -40,7 +41,14 @@ while run:
 
 		if e.type == KEYDOWN:
 			events.append(e.key)
+		elif e.key in events:
+			events.remove(e.key)
 
+	print len(events), events
+
+	for k in events:
+		if k == K_LEFT:  GUNSIGHT.radian -= 0.02
+		if k == K_RIGHT: GUNSIGHT.radian += 0.02
 
 	# WOOOOOOOOOORLD
 	# ...
@@ -51,7 +59,7 @@ while run:
 	visualization.starsky(DISPLAY, tick)
 	visualization.draw_planets(DISPLAY, PLANETS)
 	visualization.draw_projectiles(DISPLAY, PROJECTILES)
-	#visualization.draw_gunsight(DISPLAY, GUNSIGHT)
+	visualization.draw_gunsight(DISPLAY, GUNSIGHT)
 	visualization.draw_hud(DISPLAY, WORLDINFO)
 	pygame.display.update()
 

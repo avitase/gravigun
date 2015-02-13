@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 *-*
 import pygame
+from numpy import sin, cos, array
 
 X = 1280
 Y =  720
@@ -28,10 +29,13 @@ class Projectile(RoundThing):
 
 
 class Gunsight(object):
-	def __init__(self, base_planet, direction):
+	def __init__(self, base_planet, rad=0, lenn=10):
 		self.base = base_planet
-		self.v = direction
+		self.radian = rad # 0 - 2pi
+		self.length = lenn
 
 	def draw(self, disp):
-		pygame.draw.aaline(disp, self.base.color, self.base.pos, self.base.pos+self.v, True)
+		coor = self.base.pos + ( array( (cos(self.radian), sin(self.radian))) * (self.base.radius+self.length))
+		print self.base.pos, coor
+		pygame.draw.aaline(disp, self.base.color, self.base.pos, coor)
 
