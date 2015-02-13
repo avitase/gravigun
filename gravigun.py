@@ -3,7 +3,7 @@
 import pygame
 from pygame.locals import K_LEFT, K_RIGHT, K_SPACE, K_ESCAPE, KEYUP, KEYDOWN, QUIT
 #from random import randint, randrange
-import starsky
+import visualization
 
 X = 1280
 Y =  720
@@ -18,6 +18,7 @@ pygame.display.set_caption('Gravigun')
 DISPLAY = pygame.display.set_mode((X, Y))
 
 PLANETS = []
+PROJECTILES = []
 
 run = True
 events = []
@@ -27,12 +28,7 @@ timeout = 0
 # main game loop
 while run:
 
-	DISPLAY.fill((0, 0, 0))
-
-	starsky.starsky(DISPLAY, Y, tick)
-
-
-
+	# HANDLE INPUT
 	for e in pygame.event.get():
 		if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
 			run = False
@@ -44,8 +40,24 @@ while run:
 		if e.type == KEYDOWN:
 			events.append(e.key)
 
-	TIMER.tick(FPS)
+
+	# WOOOOOOOOOORLD
+	# ...
+
+
+	# DRAWING
+	DISPLAY.fill((0, 0, 0))
+	visualization.starsky(DISPLAY, Y, tick)
+	visualization.draw_planets(PLANETS)
+	visualization.draw_projectiles(PROJECTILES)
+	visualization.draw_hud()
 	pygame.display.update()
+
+
+	# WAITING
+	TIMER.tick(FPS)
 	tick = (tick % (FPS*100)) + 1 # avoid overflow
 
+
 pygame.quit()
+
