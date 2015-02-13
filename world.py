@@ -18,4 +18,4 @@ class Planet(RoundThing):
 class Projectile(RoundThing):
 	def __init__(self, rx, ry, vx, vy, mas, rad, col=(255,255,255)):
 		RoundThing.__init__(self, rx, ry, mas, rad, col)
-		self.dir = (vx, vy)
+		self.v = (vx, vy)	#direction
