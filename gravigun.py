@@ -3,11 +3,10 @@
 import pygame
 from pygame.locals import K_LEFT, K_RIGHT, K_SPACE, K_ESCAPE, KEYUP, KEYDOWN, QUIT
 #from random import randint, randrange
+from world import X, Y, FPS
 import visualization
+import god
 
-X = 1280
-Y =  720
-FPS = 30
 pygame.init()
 pygame.mixer.init()
 FONT = pygame.font.Font("pixel.ttf", 48)
@@ -17,9 +16,10 @@ KEYS = [K_ESCAPE, K_LEFT, K_RIGHT, K_SPACE]
 pygame.display.set_caption('Gravigun')
 DISPLAY = pygame.display.set_mode((X, Y))
 
-PLANETS = []
+PLANETS = god.generic_field()
 PROJECTILES = []
 GUNSIGHT = None
+WORLDINFO = None
 
 run = True
 events = []
@@ -48,10 +48,10 @@ while run:
 
 	# DRAWING
 	DISPLAY.fill((0, 0, 0))
-	visualization.starsky(DISPLAY, Y, tick)
+	visualization.starsky(DISPLAY, tick)
 	visualization.draw_planets(DISPLAY, PLANETS)
 	visualization.draw_projectiles(DISPLAY, PROJECTILES)
-	visualization.draw_gunsight(DISPLAY, GUNSIGHT)
+	#visualization.draw_gunsight(DISPLAY, GUNSIGHT)
 	visualization.draw_hud(DISPLAY, WORLDINFO)
 	pygame.display.update()
 
