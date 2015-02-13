@@ -3,10 +3,11 @@
 import pygame
 from pygame.locals import K_LEFT, K_RIGHT, K_SPACE, K_ESCAPE, KEYUP, KEYDOWN, QUIT
 #from random import randint, randrange
-from world import X, Y, FPS, Gunsight
+from world import X, Y, FPS, UNIVERSE_SPEED, Planet, Projectile, Gunsight
 #import world
 import visualization
 import god
+import physics
 
 pygame.init()
 pygame.mixer.init()
@@ -44,14 +45,21 @@ while run:
 		elif e.key in events:
 			events.remove(e.key)
 
-	print len(events), events
-
 	for k in events:
 		if k == K_LEFT:  GUNSIGHT.radian -= 0.02
 		if k == K_RIGHT: GUNSIGHT.radian += 0.02
+		if k == K_SPACE:
+			proj = Projectile(GUNSIGHT.endpoint, GUNSIGHT.orientation/20, 1, 5, (255,0,0))
+			PROJECTILES.append(proj)
+
 
 	# WOOOOOOOOOORLD
 	# ...
+	for p in PROJECTILES:
+		physics.updateProjectileMomentum(PLANETS, p, UNIVERSE_SPEED)
+		physics.moveProjectile(p, UNIVERSE_SPEED)
+	PROJECTILES = [p for p in PROJECTILES if p.pos[0] > -1000 and p.pos[0] < X+1000]
+	print len(PROJECTILES)
 
 
 	# DRAWING
@@ -66,7 +74,7 @@ while run:
 
 	# WAITING
 	TIMER.tick(FPS)
-	tick = (tick % (FPS*100)) + 1 # avoid overflow
+	tick = (tick % (FPS)) + 1 # avoid overflow
 
 
 pygame.quit()
