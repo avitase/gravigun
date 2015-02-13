@@ -31,5 +31,8 @@ def draw_projectiles(disp, projectiles):
 	for p in planets:
 		p.draw(disp)
 
-def draw_hud(disp):
+def draw_gunsight(disp, gun):
+	gun.draw()
+
+def draw_hud(disp, worldinfo):
 	pass

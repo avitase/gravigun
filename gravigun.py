@@ -19,6 +19,7 @@ DISPLAY = pygame.display.set_mode((X, Y))
 
 PLANETS = []
 PROJECTILES = []
+GUNSIGHT = None
 
 run = True
 events = []
@@ -48,9 +49,10 @@ while run:
 	# DRAWING
 	DISPLAY.fill((0, 0, 0))
 	visualization.starsky(DISPLAY, Y, tick)
-	visualization.draw_planets(PLANETS)
-	visualization.draw_projectiles(PROJECTILES)
-	visualization.draw_hud()
+	visualization.draw_planets(DISPLAY, PLANETS)
+	visualization.draw_projectiles(DISPLAY, PROJECTILES)
+	visualization.draw_gunsight(DISPLAY, GUNSIGHT)
+	visualization.draw_hud(DISPLAY, WORLDINFO)
 	pygame.display.update()
 
 
