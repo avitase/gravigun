@@ -33,7 +33,7 @@ def draw_projectiles(disp, projectiles):
 		p.draw(disp)
 
 def draw_gunsight(disp, gun):
-	gun.draw()
+	gun.draw(disp)
 
 def draw_hud(disp, worldinfo):
 	pass
