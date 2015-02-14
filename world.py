@@ -9,9 +9,9 @@ FPS = 30
 UNIVERSE_SPEED = 10
 
 class RoundThing(object):
-	def __init__(self, x, y, mas, rad, col):
+	def __init__(self, x, y, mass, rad, col):
 		self.pos = (x,y)
-		self.mass = mas
+		self.mass = mass
 		self.radius = rad
 		self.color = col
 
@@ -20,13 +20,14 @@ class RoundThing(object):
 
 
 class Planet(RoundThing):
-	def __init__(self, x, y, mas, rad, col=(50,50,200)):
-		RoundThing.__init__(self, x, y, mas, rad, col)
+	def __init__(self, (x, y), mass, rad, col=(50,50,200)):
+		RoundThing.__init__(self, x, y, mass, rad, col)
 
 class Projectile(RoundThing):
-	def __init__(self, (rx, ry), (vx, vy), mas, rad, col=(255,255,255)):
-		RoundThing.__init__(self, rx, ry, mas, rad, col)
-		self.v = (vx, vy)	#direction
+	def __init__(self, id, (r_x, r_y), (v_x, v_y), mass, rad, col=(255,255,255)):
+		RoundThing.__init__(self, r_x, r_y, mass, rad, col)
+		self.id = id
+		self.v = (v_x, v_y)	#direction
 
 
 class Gunsight(object):

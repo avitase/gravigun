@@ -49,7 +49,7 @@ while run:
 		if k == K_LEFT:  GUNSIGHT.radian -= 0.02
 		if k == K_RIGHT: GUNSIGHT.radian += 0.02
 		if k == K_SPACE:
-			proj = Projectile(GUNSIGHT.endpoint, GUNSIGHT.orientation/20, 1, 5, (255,0,0))
+			proj = Projectile(0, GUNSIGHT.endpoint, GUNSIGHT.orientation/20, 1, 5, (255,0,0))
 			PROJECTILES.append(proj)
 
 
@@ -59,7 +59,7 @@ while run:
 		physics.updateProjectileMomentum(PLANETS, p, UNIVERSE_SPEED)
 		physics.moveProjectile(p, UNIVERSE_SPEED)
 	PROJECTILES = [p for p in PROJECTILES if p.pos[0] > -1000 and p.pos[0] < X+1000]
-	print len(PROJECTILES)
+	#print len(PROJECTILES)
 
 
 	# DRAWING
@@ -74,7 +74,7 @@ while run:
 
 	# WAITING
 	TIMER.tick(FPS)
-	tick = (tick % (FPS)) + 1 # avoid overflow
+	tick = (tick % (FPS*100)) + 1 # avoid overflow
 
 
 pygame.quit()
