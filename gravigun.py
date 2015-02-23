@@ -21,7 +21,7 @@ run = True
 events = []
 
 level = 0
-worlds = 3
+worlds = 4
 
 cooldown = 50
 maxspeed = 50
