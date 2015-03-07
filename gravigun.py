@@ -13,7 +13,7 @@ TIMER = pygame.time.Clock()
 
 tick = 0
 KEYS = [K_ESCAPE, K_LEFT, K_RIGHT, K_SPACE, K_a, K_d, K_f, K_UP, K_DOWN, K_w, K_s]
-pygame.display.set_caption('Graivgun')
+pygame.display.set_caption('Gravigun! PEW PEW PEW!')
 
 display = pygame.display.set_mode((X, Y))
 

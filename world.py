@@ -6,7 +6,7 @@ from numpy import sin, cos, array
 from math import pi
 
 X = 1200
-Y = 600 
+Y = 600
 FPS = 30
 
 class RoundThing(object):
@@ -30,7 +30,7 @@ class Projectile(RoundThing):
 		self.velocity = (v_x, v_y)
 		self.maxlifetime = lifetime
 		self.lifetime = lifetime
-	
+
 	def draw(self, disp):
 		RoundThing.draw(self, disp)
 		rect = (self.pos[0]-self.radius-3, self.pos[1]-self.radius-3, 2*self.radius+6, 2*self.radius+6)
@@ -60,13 +60,13 @@ def createPlanetsFromFile(filename):
 		planets = []
 		for line in f.readlines():
 			x, y, mass, rad = map(int, line.split(" "))
-			
+
 			if i is 0: color = (0, 0, 255)
 			elif i is 1: color = (255, 0, 0)
 			else: color = (0, 255, 0)
 
 			planets.append(Planet(i, (x, y), mass, rad, color))
-			
+
 			i += 1
 
 	return planets
