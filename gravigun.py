@@ -29,8 +29,7 @@ minspeed = 10
 
 planets = world.createPlanetsFromFile("world1.world")
 
-gunsights = []
-gunsights.append(world.Gunsight(0, planets[0]))
+gunsights = [world.Gunsight(0, planets[0])]
 gunsights.append(world.Gunsight(1, planets[1]))
 
 projectiles = []
@@ -139,13 +138,20 @@ while run:
 	for planet in planets:
 		for p in projectiles[:]:
 			if physics.doesProjectilePenetratePlanet(p, planet):
-				if planet.id is 0 or planet.id is 1:
-					if planet.id is 0:
-						x = 10 - shots[1]
-						points[1] += x if x>0 else 1
-					else:
-						x = 10 - shots[0]
-						points[0] += x if x>0 else 1
+				if planet.id is 0:
+					x = 10 - shots[1]
+					points[1] += x if x>0 else 1
+					projectiles = []
+					level = (level + 1)%worlds
+					planets = world.createPlanetsFromFile(str("world%d.world" % (level+1)))
+					gunsights = []
+					gunsights.append(world.Gunsight(0, planets[0]))
+					gunsights.append(world.Gunsight(1, planets[1]))
+					power = [10.0, 10.0]
+					shots = [0, 0]
+				elif planet.id is 1:
+					x = 10 - shots[0]
+					points[0] += x if x>0 else 1
 
 					projectiles = []
 					level = (level + 1)%worlds
